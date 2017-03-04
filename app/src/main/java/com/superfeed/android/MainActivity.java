@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity
     private SupportMapFragment mapFragment;
     private HomeFragment homeFragment;
     private ProductListFragment listingFragment;
+    private HalfPieChartActivity donateFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity
         mapFragment = new SupportMapFragment();
         homeFragment = HomeFragment.newInstance();
         listingFragment = ProductListFragment.newInstance(2);
+        donateFragment = new HalfPieChartActivity();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
@@ -114,7 +116,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             fragment = homeFragment;
         } else if (id == R.id.nav_donations) {
-            return false;
+            fragment = donateFragment;
+            //startActivity(new Intent(this,HalfPieChartActivity.class));
         } else if (id == R.id.nav_listing) {
             fragment = listingFragment;
         } else if (id == R.id.nav_map) {
