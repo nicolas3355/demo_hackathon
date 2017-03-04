@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_listing"
+            android:icon="@drawable/ic_menu_listing"
+            android:title="@string/nav_listing_label" />
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_menu_map"
+            android:title="@string/nav_map_label" />
+    </group>
+
+    <item android:title="@string/nav_management">
+        <menu>
+            <item
+                android:id="@+id/nav_donations"
+                android:icon="@drawable/ic_menu_donations"
+                android:title="@string/nav_donations_label" />
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_menu_settings"
+                android:title="@string/nav_settings_label" />
+        </menu>
+    </item>
+
+</menu>
