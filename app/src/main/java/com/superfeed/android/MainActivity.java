@@ -1,6 +1,7 @@
 package com.superfeed.android;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,11 +23,16 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.superfeed.android.dummy.DummyContent;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
+        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback,
+        HomeFragment.OnFragmentInteractionListener, ProductListFragment.OnListFragmentInteractionListener {
 
     private GoogleMap mMap;
+    private SupportMapFragment mapFragment;
+    private HomeFragment homeFragment;
+    private ProductListFragment listingFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +59,14 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-//        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.map);
-//        mapFragment.getMapAsync(this);
+        mapFragment = new SupportMapFragment();
+        homeFragment = HomeFragment.newInstance();
+        listingFragment = ProductListFragment.newInstance(2);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_main, homeFragment)
+                .commit();
     }
 
     @Override
@@ -101,20 +111,13 @@ public class MainActivity extends AppCompatActivity
 
         Fragment fragment;
 
-        if (id == R.id.nav_donations) {
-            // Handle the camera action
+        if (id == R.id.nav_home) {
+            fragment = homeFragment;
+        } else if (id == R.id.nav_donations) {
             return false;
         } else if (id == R.id.nav_listing) {
-            return false;
+            fragment = listingFragment;
         } else if (id == R.id.nav_map) {
-//            Intent intent = new Intent(this, MapsActivity.class);
-//            startActivity(intent);
-            // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                    .findFragmentById(R.id.map);
-            SupportMapFragment mapFragment = new SupportMapFragment();
-//            ViewGroup.LayoutParams lp = mapFragment.getView().getLayoutParams();
-//            mapFragment.getView().setLayoutParams(lp);
             mapFragment.getMapAsync(this);
             fragment = mapFragment;
         } else if (id == R.id.nav_settings) {
@@ -156,5 +159,15 @@ public class MainActivity extends AppCompatActivity
             mMap.addMarker(new MarkerOptions().position(location.location).title(location.name));
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(supermarkets[0].location, 17));
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        // do nothing?
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+        // do nothing?
     }
 }
