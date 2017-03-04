@@ -15,15 +15,19 @@ import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.superfeed.android.dummy.DemoBase;
 
@@ -87,12 +91,13 @@ public class HalfPieChartActivity extends DemoBase {
 //        l.setYEntrySpace(0f);
 //        l.setYOffset(0f);
 
-
+        mChart.setY(300);
 
         // entry label styling
         mChart.setEntryLabelColor(Color.WHITE);
         mChart.setEntryLabelTypeface(mTfRegular);
         mChart.setEntryLabelTextSize(9f);
+
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -108,7 +113,6 @@ public class HalfPieChartActivity extends DemoBase {
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);
 
-
 //
         dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
         //dataSet.setSelectionShift(0f);
@@ -122,6 +126,8 @@ public class HalfPieChartActivity extends DemoBase {
 
         mChart.invalidate();
     }
+
+
 
     private SpannableString generateCenterSpannableText() {
 
