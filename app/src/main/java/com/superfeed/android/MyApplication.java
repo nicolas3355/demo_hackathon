@@ -2,6 +2,7 @@ package com.superfeed.android;
 
 import android.app.Application;
 import android.content.Intent;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import com.android.volley.RequestQueue;
@@ -11,7 +12,7 @@ import com.android.volley.toolbox.Volley;
  * Created by nicolas on 3/4/17.
  */
 
-public class MyApplication extends Application {
+public class MyApplication extends MultiDexApplication {
 
     public RequestQueue requestQueue;
     @Override
