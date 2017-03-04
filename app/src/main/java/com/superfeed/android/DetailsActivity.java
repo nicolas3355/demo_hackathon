@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,7 +24,7 @@ public class DetailsActivity extends AppCompatActivity {
     public static final String ARG_PRODUCT_ID = "product_id";
     private DummyContent.DummyItem product;
     private ImageView mImageView;
-    private ListView mListView;
+    private LinearLayout mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class DetailsActivity extends AppCompatActivity {
 
 //        mNameTextView = (TextView) findViewById(R.id.product_name);
         mImageView = (ImageView) findViewById(R.id.product_image);
-        mListView = (ListView) findViewById(R.id.availability_list);
+        mListView = (LinearLayout) findViewById(R.id.availability_list);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -59,28 +60,17 @@ public class DetailsActivity extends AppCompatActivity {
 
             TextView headerView = new TextView(this);
             headerView.setText(product.details);
-            mListView.addHeaderView(headerView);
+            mListView.addView(headerView);
 
-            TextView emptyView = new TextView(this);
-            emptyView.setText(getString(R.string.no_availability));
-            mListView.setEmptyView(emptyView);
+//            TextView emptyView = new TextView(this);
+//            emptyView.setText(getString(R.string.no_availability));
+//            mListView.setEmptyView(emptyView);
 
-            mListView.setAdapter(new SupermarketListAdapter(this, DummySupermarket.ITEM_MAP, product));
-            mListView.setOnTouchListener(new View.OnTouchListener() {
-                // Setting on Touch Listener for handling the touch inside ScrollView
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    // Disallow the touch request for parent scroll on touch of child view
-                    v.getParent().requestDisallowInterceptTouchEvent(true);
-                    return false;
-                }
-            });
-            mListView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-                @Override
-                public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                    setListViewHeightBasedOnChildren(mListView);
-                }
-            });
+            SupermarketListAdapter adapter = new SupermarketListAdapter(this, DummySupermarket.ITEM_MAP, product);
+            for (int i = 0; i < adapter.getCount(); i++) {
+                View view = adapter.getView(i, null, mListView);
+                mListView.addView(view);
+            }
         }
     }
 

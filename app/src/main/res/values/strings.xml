@@ -14,7 +14,7 @@
         completions."
     </string>
     <string name="title_activity_maps">Supermarket Map</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">@string/app_name</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -120,4 +120,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="no_availability">Nothing available currently. Please check back later.</string>
+    <string name="product_listing">Product Listing</string>
 </resources>

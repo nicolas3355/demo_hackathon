@@ -110,22 +110,27 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         Fragment fragment;
+        String title;
 
         if (id == R.id.nav_home) {
             fragment = homeFragment;
+            title = getString(R.string.app_name);
         } else if (id == R.id.nav_donations) {
             return false;
         } else if (id == R.id.nav_listing) {
             fragment = listingFragment;
+            title = getString(R.string.nav_listing_label);
         } else if (id == R.id.nav_map) {
             mapFragment.getMapAsync(this);
             fragment = mapFragment;
+            title = getString(R.string.nav_map_label);
         } else if (id == R.id.nav_settings) {
             return false;
         } else {
             return false;
         }
 
+        setTitle(title);
         fragmentManager.beginTransaction()
                 .replace(R.id.content_main, fragment)
                 .commit();
