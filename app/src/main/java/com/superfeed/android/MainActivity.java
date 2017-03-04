@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity
             title = getString(R.string.app_name);
         } else if (id == R.id.nav_donations) {
             fragment = donateFragment;
+            title = getString(R.string.nav_donations_label);
             //startActivity(new Intent(this,HalfPieChartActivity.class));
         } else if (id == R.id.nav_listing) {
             fragment = listingFragment;
