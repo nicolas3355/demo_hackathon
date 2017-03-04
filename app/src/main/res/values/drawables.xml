@@ -4,4 +4,5 @@
     <item name="ic_menu_map" type="drawable">@android:drawable/ic_menu_slideshow</item>
     <item name="ic_menu_listing" type="drawable">@android:drawable/ic_menu_manage</item>
     <item name="ic_menu_home" type="drawable">@android:drawable/ic_menu_manage</item>
+    <item name="ic_menu_identifier" type="drawable">@android:drawable/ic_menu_manage</item>
 </resources>

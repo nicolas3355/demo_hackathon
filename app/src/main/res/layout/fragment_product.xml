@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:layout_gravity="top"
-        android:src="@drawable/sample_1"/>
+        android:src="@drawable/img_seafood"/>
 
     <TextView
         android:id="@+id/product_name"
@@ -22,5 +22,6 @@
         android:textColor="#ffffff"
         android:padding="2dp"
         android:textAppearance="?attr/textAppearanceListItem"
+        android:textAlignment="center"
         android:text="Test value 1"/>
 </FrameLayout>

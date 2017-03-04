@@ -121,4 +121,6 @@
     </string>
     <string name="no_availability">Nothing available currently. Please check back later.</string>
     <string name="product_listing">Product Listing</string>
+    <string name="identifier_message">Show this QR code to get access to your discounts.</string>
+    <string name="nav_identifier_label">Checkout</string>
 </resources>

@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     private HomeFragment homeFragment;
     private ProductListFragment listingFragment;
     private HalfPieChartActivity donateFragment;
+    private IdentifierFragment identifierFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity
         homeFragment = HomeFragment.newInstance();
         listingFragment = ProductListFragment.newInstance(2);
         donateFragment = new HalfPieChartActivity();
+        identifierFragment = new IdentifierFragment();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
@@ -130,6 +132,9 @@ public class MainActivity extends AppCompatActivity
             title = getString(R.string.nav_map_label);
         } else if (id == R.id.nav_settings) {
             return false;
+        } else if (id == R.id.nav_identifier) {
+            fragment = identifierFragment;
+            title = getString(R.string.nav_identifier_label);
         } else {
             return false;
         }

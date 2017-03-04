@@ -19,4 +19,14 @@ public class LocalPref {
         SharedPreferences prefs = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
         return prefs.getBoolean("user_logged_in", false);
     }
+
+    public static void setUserEmail(Context context, String val) {
+        SharedPreferences prefs = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        prefs.edit().putString("user_email", val).apply();
+    }
+
+    public static String getUserEmail(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        return prefs.getString("user_email", "");
+    }
 }
