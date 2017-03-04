@@ -5,15 +5,14 @@ import com.superfeed.android.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
- * <p>
- * TODO: Replace all uses of this class before publishing your app.
+ * Created by jkerry on 3/4/17.
  */
-public class DummyContent {
+
+public class DummySupermarket {
 
     /**
      * An array of sample (dummy) items.
@@ -25,7 +24,7 @@ public class DummyContent {
      */
     public static final Map<Integer, DummyItem> ITEM_MAP = new HashMap<>();
 
-    private static final int COUNT = 25;
+    private static final int COUNT = 5;
 
     static {
         // Add some sample items.
@@ -40,16 +39,11 @@ public class DummyContent {
     }
 
     private static DummyItem createDummyItem(int position) {
-        return new DummyItem(position, "Item " + position, makeDetails(position));
+        return new DummyItem(position, "Supermarket " + position, makeDetails(position));
     }
 
     private static String makeDetails(int position) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Details about Item: ").append(position);
-        for (int i = 0; i < position; i++) {
-            builder.append("\nMore details information here.");
-        }
-        return builder.toString();
+        return String.format(Locale.getDefault(), "$%.2f", 1 + position * 10 - .01);
     }
 
     /**
@@ -69,20 +63,6 @@ public class DummyContent {
         @Override
         public String toString() {
             return content;
-        }
-
-        public int getDrawable() {
-            switch (id % 8) {
-                case 0: return R.drawable.sample_0;
-                case 1: return R.drawable.sample_1;
-                case 2: return R.drawable.sample_2;
-                case 3: return R.drawable.sample_3;
-                case 4: return R.drawable.sample_4;
-                case 5: return R.drawable.sample_5;
-                case 6: return R.drawable.sample_6;
-                default:
-                case 7: return R.drawable.sample_7;
-            }
         }
     }
 }

@@ -169,5 +169,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
         // do nothing?
+        Intent intent = new Intent(this, DetailsActivity.class);
+        intent.putExtra(DetailsActivity.ARG_PRODUCT_ID, item.id);
+        startActivity(intent);
     }
 }

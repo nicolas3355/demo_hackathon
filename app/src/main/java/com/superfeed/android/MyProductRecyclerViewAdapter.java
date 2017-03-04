@@ -37,18 +37,7 @@ public class MyProductRecyclerViewAdapter extends RecyclerView.Adapter<MyProduct
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        int drawableId;
-        switch (position % 8) {
-            case 0: drawableId = R.drawable.sample_0; break;
-            case 1: drawableId = R.drawable.sample_1; break;
-            case 2: drawableId = R.drawable.sample_2; break;
-            case 3: drawableId = R.drawable.sample_3; break;
-            case 4: drawableId = R.drawable.sample_4; break;
-            case 5: drawableId = R.drawable.sample_5; break;
-            case 6: drawableId = R.drawable.sample_6; break;
-            default:
-            case 7: drawableId = R.drawable.sample_7; break;
-        }
+        int drawableId = mValues.get(position).getDrawable();
         holder.mImageView.setImageDrawable(ContextCompat.getDrawable(holder.mView.getContext(), drawableId));
         holder.mNameView.setText(mValues.get(position).content);
 
