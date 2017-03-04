@@ -6,6 +6,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.Context;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
@@ -37,10 +39,10 @@ public class PullingService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.e("hello","can you hear me");
+        Log.e("hello", "can you hear me");
     }
 
-    public static final int POLL_INTERVAL = 7*1000;
+    public static final int POLL_INTERVAL = 7 * 1000;
 
 
     @Override
@@ -48,49 +50,52 @@ public class PullingService extends IntentService {
         if (intent != null) {
             final String action = intent.getStringExtra(ACTION_FOO);
             if ("123".equals(action)) {
-               //call 3amo baydoun
-                Log.e("hello","can you hear me i am inside intent");
-                RequestQueue queue = ((MyApplication)getApplication()).requestQueue;
-                String url ="http://superpotato.herokuapp.com/api/get?key=push";
+                //call 3amo baydoun
+                Log.e("hello", "can you hear me i am inside intent");
+                RequestQueue queue = ((MyApplication) getApplication()).requestQueue;
+                String url = "http://superpotato.herokuapp.com/api/get?key=push";
 
                 // Request a string response from the provided URL.
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Log.e("hello","response"+response);
+                                Log.e("hello", "response" + response);
                                 // Display the first 500 characters of the response string.
-                                if(response.equals("true")) {
+                                if (response.equals("true")) {
                                     //create notification
                                     createNotification();
                                 }
 
                             }
                         }, null);
-// Add the request to the RequestQueue.
+                // Add   the request to the RequestQueue.
                 queue.add(stringRequest);
 
             }
         }
     }
 
-    private void createNotification(){
+    private void createNotification() {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(android.R.drawable.sym_def_app_icon)
                         .setContentTitle("My notification")
                         .setContentText("Hello World!");
-// Creates an explicit intent for an Activity in your app
+
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        mBuilder.setSound(alarmSound);
+        // Creates an explicit intent for an Activity in your app
         Intent resultIntent = new Intent(this, LoginActivity.class);
 
-// The stack builder object will contain an artificial back stack for the
-// started Activity.
-// This ensures that navigating backward from the Activity leads out of
-// your application to the Home screen.
+        // The stack builder object will contain an artificial back stack for the
+        // started Activity.
+        // This ensures that navigating backward from the Activity leads out of
+        // your application to the Home screen.
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-// Adds the back stack for the Intent (but not the Intent itself)
+        // Adds the back stack for the Intent (but not the Intent itself)
         stackBuilder.addParentStack(LoginActivity.class);
-// Adds the Intent that starts the Activity to the top of the stack
+        // Adds the Intent that starts the Activity to the top of the stack
         stackBuilder.addNextIntent(resultIntent);
         PendingIntent resultPendingIntent =
                 stackBuilder.getPendingIntent(
@@ -106,10 +111,9 @@ public class PullingService extends IntentService {
     }
 
 
-
     public static void setServiceAlarm(Context context, boolean isOn) {
         Intent i = new Intent(context, PullingService.class);
-        i.putExtra(ACTION_FOO,"123");
+        i.putExtra(ACTION_FOO, "123");
         PendingIntent pi = PendingIntent.getService(
                 context, 0, i, 0);
 
@@ -117,7 +121,7 @@ public class PullingService extends IntentService {
                 context.getSystemService(Context.ALARM_SERVICE);
 
         if (isOn) {
-            Log.e("hello","set Alarm manager");
+            Log.e("hello", "set Alarm manager");
             alarmManager.setRepeating(AlarmManager.RTC,
                     System.currentTimeMillis(), POLL_INTERVAL, pi);
         } else {
