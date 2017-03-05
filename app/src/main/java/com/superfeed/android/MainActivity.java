@@ -131,6 +131,12 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_identifier) {
             fragment = identifierFragment;
             title = getString(R.string.nav_identifier_label);
+        } else if (id == R.id.nav_logout) {
+            LocalPref.setUserLoggedIn(this, false);
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
         } else {
             return false;
         }
@@ -173,6 +179,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onInfoWindowClick(Marker marker) {
                 Intent intent = new Intent(MainActivity.this, SupermarketActivity.class);
+                intent.putExtra(SupermarketActivity.ARG_SUPERMARKET_NAME, marker.getTitle());
                 startActivity(intent);
             }
         });

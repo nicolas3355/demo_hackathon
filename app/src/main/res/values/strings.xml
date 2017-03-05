@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SuperFeed</string>
+    <string name="app_name">Hakuna Batata</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -124,4 +124,6 @@
     <string name="identifier_message">Show this QR code to get access to your discounts.</string>
     <string name="nav_identifier_label">Checkout</string>
     <string name="title_activity_supermarket">SupermarketActivity</string>
+    <string name="nav_logout_label">Logout</string>
+    <string name="subtitle">potato_devs</string>
 </resources>

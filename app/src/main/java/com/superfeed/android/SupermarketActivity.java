@@ -16,7 +16,7 @@ import com.superfeed.android.dummy.DummySupermarket;
 
 public class SupermarketActivity extends AppCompatActivity {
 
-    private static final String ARG_SUPERMARKET_NAME = "supermarket_name";
+    public static final String ARG_SUPERMARKET_NAME = "supermarket_name";
     private LinearLayout mListView;
 
     @Override
