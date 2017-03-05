@@ -8,5 +8,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">0dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
-    <dimen name="supermarket_name_text_size">16sp</dimen>
+    <dimen name="supermarket_name_text_size">12sp</dimen>
+    <dimen name="product_name_text_size">16sp</dimen>
 </resources>

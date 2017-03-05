@@ -39,7 +39,7 @@ public class DummySupermarket {
     }
 
     private static DummyItem createDummyItem(int position) {
-        return new DummyItem(position, "Supermarket " + position, makeDetails(position));
+        return new DummyItem(position, "Product " + position, "Supermarket " + (position % 4), makeDetails(position));
     }
 
     private static String makeDetails(int position) {
@@ -53,11 +53,13 @@ public class DummySupermarket {
         public final int id;
         public final String content;
         public final String details;
+        public final String supermarket;
 
-        public DummyItem(int id, String content, String details) {
+        public DummyItem(int id, String content, String supermarket, String details) {
             this.id = id;
             this.content = content;
             this.details = details;
+            this.supermarket = supermarket;
         }
 
         @Override

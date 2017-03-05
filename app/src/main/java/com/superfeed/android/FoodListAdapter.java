@@ -6,15 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.superfeed.android.dummy.DummyContent;
 import com.superfeed.android.dummy.DummySupermarket;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -22,9 +19,9 @@ import java.util.Map;
  * Created by jkerry on 3/4/17.
  */
 
-public class SupermarketListAdapter extends ArrayAdapter<DummySupermarket.DummyItem> {
+public class FoodListAdapter extends ArrayAdapter<DummySupermarket.DummyItem> {
 
-    private static List<DummySupermarket.DummyItem> filterSupermarketList(Map<Integer, DummySupermarket.DummyItem> itemsMap, DummyContent.DummyItem product) {
+    private static List<DummySupermarket.DummyItem> filterSupermarketList(Map<Integer, DummySupermarket.DummyItem> itemsMap, String supermarketName) {
         ArrayList<DummySupermarket.DummyItem> items = new ArrayList<>(itemsMap.values());
 //        Iterator<DummySupermarket.DummyItem> iterator = items.iterator();
 //        while (iterator.hasNext()) {
@@ -36,8 +33,11 @@ public class SupermarketListAdapter extends ArrayAdapter<DummySupermarket.DummyI
         return items;
     }
 
-    public SupermarketListAdapter(Context context, Map<Integer, DummySupermarket.DummyItem> itemsMap, DummyContent.DummyItem product) {
-        super(context, R.layout.availability_item, filterSupermarketList(itemsMap, product));
+    private String mSupermarketName;
+
+    public FoodListAdapter(Context context, Map<Integer, DummySupermarket.DummyItem> itemsMap, String supermarketName) {
+        super(context, R.layout.availability_item, filterSupermarketList(itemsMap, supermarketName));
+        mSupermarketName = supermarketName;
     }
 
     @NonNull
@@ -56,7 +56,7 @@ public class SupermarketListAdapter extends ArrayAdapter<DummySupermarket.DummyI
         name.setText(getItem(position).content);
 
         TextView supermarket = (TextView) layout.findViewById(R.id.supermarket_name);
-        supermarket.setText(getItem(position).supermarket);
+        supermarket.setText(mSupermarketName);
 
         TextView price = (TextView) layout.findViewById(R.id.supermarket_price);
         price.setText(getItem(position).details);

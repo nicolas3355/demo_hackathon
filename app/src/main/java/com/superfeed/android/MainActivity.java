@@ -18,6 +18,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.superfeed.android.dummy.DummyContent;
 
@@ -168,6 +169,13 @@ public class MainActivity extends AppCompatActivity
             mMap.addMarker(new MarkerOptions().position(location.location).title(location.name));
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(supermarkets[0].location, 17));
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Intent intent = new Intent(MainActivity.this, SupermarketActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

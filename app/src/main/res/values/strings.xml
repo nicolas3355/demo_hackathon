@@ -123,4 +123,5 @@
     <string name="product_listing">Product Listing</string>
     <string name="identifier_message">Show this QR code to get access to your discounts.</string>
     <string name="nav_identifier_label">Checkout</string>
+    <string name="title_activity_supermarket">SupermarketActivity</string>
 </resources>
