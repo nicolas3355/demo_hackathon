@@ -1,7 +1,5 @@
 package com.superfeed.android;
 
-import android.app.Application;
-import android.content.Intent;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 

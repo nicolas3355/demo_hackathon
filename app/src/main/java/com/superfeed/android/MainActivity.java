@@ -3,11 +3,8 @@ package com.superfeed.android;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -33,7 +29,7 @@ public class MainActivity extends AppCompatActivity
     private SupportMapFragment mapFragment;
     private HomeFragment homeFragment;
     private ProductListFragment listingFragment;
-    private HalfPieChartActivity donateFragment;
+    private DonateFragment donateFragmentFragment;
     private IdentifierFragment identifierFragment;
 
     @Override
@@ -64,7 +60,6 @@ public class MainActivity extends AppCompatActivity
         mapFragment = new SupportMapFragment();
         homeFragment = HomeFragment.newInstance();
         listingFragment = ProductListFragment.newInstance(2);
-        donateFragment = new HalfPieChartActivity();
         identifierFragment = new IdentifierFragment();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -120,9 +115,9 @@ public class MainActivity extends AppCompatActivity
             fragment = homeFragment;
             title = getString(R.string.app_name);
         } else if (id == R.id.nav_donations) {
-            fragment = donateFragment;
+            fragment = new DonateFragment();
             title = getString(R.string.nav_donations_label);
-            //startActivity(new Intent(this,HalfPieChartActivity.class));
+            //startActivity(new Intent(this,DonateFragment.class));
         } else if (id == R.id.nav_listing) {
             fragment = listingFragment;
             title = getString(R.string.nav_listing_label);
